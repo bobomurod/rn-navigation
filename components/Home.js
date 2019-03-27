@@ -1,13 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default class Home extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            username: '',
+        }
+    }
   render() {
     return (
       <View style={styles.container}>
-        <Text>Hello ftom Home</Text>
-        <Button title="NAv" onPress={ ()=>this.props.navigation.navigate('Profile') }/>
-        <Button title="NAv" onPress={ ()=>this.props.navigation.navigate('Feed') }/>
+        <Text>This is Home Screen</Text>
+        <TextInput placeholder="Enter username" onChangeText={(text) => this.setState({username: text})} />
+        <Button title="Profile" onPress={ ()=>this.props.navigation.navigate('Profile', {
+            username: this.state.username
+              }
+            ) 
+          }
+        />
+        <Button title="Feed" onPress={ ()=>this.props.navigation.navigate('Feed') }/>
       </View>
     );
   }
